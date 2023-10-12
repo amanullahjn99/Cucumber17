@@ -2,8 +2,10 @@ package steps;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriver;
 
 public class EmployeeSearchSteps {
+    public WebDriver driver;
     @When("user clicks on PIM option")
     public void user_clicks_on_pim_option() {
         // Write code here that turns the phrase above into concrete actions
