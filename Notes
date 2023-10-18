@@ -96,3 +96,35 @@ Scenario - search employee by id
     When user enters employee id
     And user clicks on search button
     Then user should be able to see employee details
+
+class 3 -
+
+for feature file, we need step definitions to execute the code.
+
+we need one point of execution.
+
+as per the standards, for employeesearch feature, we need employeesearch steps class
+to write all the steps definition
+
+we cannot write duplicate steps in step definitions classes
+
+runner class - we execute all the scenarios, some of the scenarios or one of the scenarios
+based on the requirement
+
+in runners package, we will create all the test runner classes
+features
+glue
+dry run
+tags
+
+there is a need through which I can execute one scenario among multiple
+same tag name must be provided in scenario as it is in runner class
+sprint 5
+sprint 1,2,3,4 - 8, 5, 7, 9
+we use 'or' keyword to execute scenarios from either conditions
+if one condition is true, it will execute the scenario
+
+we use 'and' keyword to execute the scenarios when both conditions must be true
+
+utils folder - to create common methods class so that we can use all the commmon
+functions from this class
