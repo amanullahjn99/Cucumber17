@@ -16,11 +16,9 @@ import org.junit.runner.RunWith;
         //it quickly scans all the gherkin steps in all the feature files and will give
         //you the missing step definition
         //for actual execution, we need to set the value of it to false
-       dryRun = false,
-
-        //tags will identify the scenarios in a group and will execute all the scenarios having these
-        tags = "@regression and @nafiseh"
-
+        dryRun = false,
+        //tags will identify the scenarios in a group and will execute all the scenarios having these tags
+        tags = "@emp"
 )
 
 public class RunnerClass {
