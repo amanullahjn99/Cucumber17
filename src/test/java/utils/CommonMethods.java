@@ -18,7 +18,7 @@ public class CommonMethods {
     public static void openBrowserAndLaunchApplication(){
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")){
-            case "chrome":
+            case "Chrome":
                 driver = new ChromeDriver();
                 break;
             case "firefox":
