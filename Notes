@@ -161,4 +161,48 @@ background - for all the common steps of the scenarios, we can write them here.
 till the time flow is same, we can take the steps. Once the flow changed, we can't take steps
 
 it is limited to one feature file. It means, for different feature files, background will be
-different
+different.
+
+class 5 -
+recap -
+
+how to pass the data from config file -
+we wrote some of the common methods in common methods class
+
+background - common steps from all the scenarios we can take and put it under background
+**only till the flow is same**
+
+background is applicable for one feature file.
+
+order of execution - background execute -> scenario execute
+
+Hooks - hooks are used to write the pre condition and post condition of the project
+we need to create hooks class under steps package
+when we execute the code, hooks class will execute pre condition first and then all the
+test cases will be executed and then post condition will execute at last
+
+DONT FORGET TO COMMENT STEPS FROM ALL FEATURE FILES FOR PRE AND POST CONdITION
+
+in the framework, we cannot pass any hard coded data. cucumber allows us to perform
+data driven testing
+
+data driven testing - when one scenario executed against multiple set of data, we call it
+data driven testing approach
+
+scenario vs scenario outline -
+scenario execute against one set of data from the feature file
+scenario outline has examples table where we keep multiple sets of data and it will
+execute based on the number of data sets
+
+order of execution -  hooks -> background -> scenario
+
+Page object model - it is a design pattern which says that we create separate
+individual class as per the screens of the application. such as for login screen
+we will create loginpage class, for dashboard screen we will create dashboardpage class
+
+we keep all the locators of the login screen in loginpage class and same we will
+do for all the classes
+
+constructor we use to initialize the object and the elements of the class
+we will call selenium page factory to initialize all the elements of the class
+and we call it in constructor
