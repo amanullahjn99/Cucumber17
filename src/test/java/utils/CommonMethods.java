@@ -66,4 +66,5 @@ public class CommonMethods extends PageInitializer {
     public void closeBrowser(){
         driver.quit();
     }
+
 }

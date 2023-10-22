@@ -6,6 +6,7 @@ import pages.EmployeeSearchPage;
 import pages.LoginPage;
 
 public class PageInitializer {
+
     public static LoginPage loginPage;
     public static DashboardPage dashboardPage;
     public static EmployeeSearchPage employeeSearchPage;
