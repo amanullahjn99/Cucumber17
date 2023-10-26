@@ -1,6 +1,5 @@
 package runners;
 
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -23,7 +22,9 @@ import org.junit.runner.RunWith;
         //pretty is responsible for printing the step and step definition in the console
         //in your framework, all reports should be generated under target folder
         //we will generate html report in target folder
-        plugin = {"pretty", "html:target/cucumber.html","json:target/cucumber.json"}
+        plugin = {"pretty", "html:target/cucumber.html",
+                "json:target/cucumber.json", "rerun:target/failed.txt"}
+        //rerun plugin will create failed.txt under target for all failed tc
 )
 
 public class RunnerClass {
