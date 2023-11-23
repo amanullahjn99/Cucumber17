@@ -28,7 +28,7 @@ Feature: add employee scenario
    # Then user is successfully logged in
    # When user clicks on PIM option
    # And user clicks on add employee option
-    When user enters "Amann" and "Jnn" and "Ahmadi"
+    When user enters "miraj" and "fali" and "moralejo"
     And user clicks on save button
     Then employee added successfully
 
@@ -39,9 +39,9 @@ Feature: add employee scenario
     Then employee added successfully
     Examples:
       | firstName | middleName | lastName |
-      |Dr         |Najibullah  |Ahmadzai|
-      |Ashraf     |Ghani       |Ahmadzai|
-      |Dr         |Abdullah    |Abdullah|
+      |donal1      |ms          |duck      |
+      |tamoha1     |ms          |jimo      |
+      |joe1        |ms          |trump     |
 
   @excel
   Scenario: Adding multiple employees from excel file
@@ -54,3 +54,11 @@ Feature: add employee scenario
       |donal12      |ms          |duck      |
       |tamoha12     |ms          |jimo      |
       |joe12        |ms          |trump     |
+
+  @db
+  Scenario: Add Employee from Frontend and verify from DB
+    When user enters "fahim" and "Naughty" and "Hedaiy"
+    And user clicks on save button
+    Then employee added successfully
+    And fetch employee info from backend
+    Then verify employee info is properly stored in db
