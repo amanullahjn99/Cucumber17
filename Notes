@@ -653,7 +653,6 @@ given - to prepare the request
 when - sending the request/hitting the endpoint
 then - validation/assertions
 
-
 class 5 -
 
 recap -
@@ -680,3 +679,20 @@ This class contains methods to perform assertions.
 
 JsonPath - This is class
 jsonPath() - This is the method of JsonPath class.
+
+in API.feature, we write all gherkin scenarios to execute and validate
+to keep step definitions, we have to create another steps package for API
+just to avoide hooks in API, we need new steps package
+
+class 6 -
+
+recap -
+
+we did hardcode in the rest assured request.
+we learned how to send the request and validate the response
+then we integrated api with the cucumber framework
+we create feature file, steps package(new), and separate runner class for API
+we created request here after writing the scenarios
+in order to make the request dynamic, we passed the endpoints, headers and body from
+constants classes
+**The intention behind creating the constants class is to make the request highly dynamic**

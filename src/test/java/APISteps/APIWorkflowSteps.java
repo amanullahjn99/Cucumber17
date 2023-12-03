@@ -7,6 +7,8 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.Assert;
+import utils.APIConstants;
+import utils.APIPayloadConstants;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +17,8 @@ import java.util.Set;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class APIWorkFlowSteps {
+public class APIWorkflowSteps {
+
     String baseURI = RestAssured.baseURI = "http://hrm.syntaxtechs.net/syntaxapi/api";
     public static String token;
     RequestSpecification request;
@@ -24,13 +27,20 @@ public class APIWorkFlowSteps {
 
     @Given("a JWT is generated")
     public void a_jwt_is_generated() {
+       /*
         RequestSpecification request = given().
-                header("Content-Type","application/json").
+                header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
                 body("{\n" +
                         "  \"email\": \"tests@batch17.com\",\n" +
                         "  \"password\": \"Tests@123\"\n" +
                         "}");
-        Response response = request.when().post("/generateToken.php");
+
+        */
+        RequestSpecification request = given().
+                header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                body(APIPayloadConstants.generateTokenPayload());
+
+        Response response = request.when().post(APIConstants.GENERATE_TOKEN_URI);
         //storing the token after generating it
         token = "Bearer "+ response.jsonPath().getString("token");
         System.out.println(token);
@@ -38,8 +48,9 @@ public class APIWorkFlowSteps {
 
     @Given("a request is prepared to create an employee")
     public void a_request_is_prepared_to_create_an_employee() {
-        request = given().header("Content-Type","application/json").
-                header("Authorization", token)
+       /*
+         request = given().header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                header(APIConstants.Header_Authorization_key, token)
                 .body("{\n" +
                         "  \"emp_firstname\": \"hind\",\n" +
                         "  \"emp_lastname\": \"pak\",\n" +
@@ -49,11 +60,16 @@ public class APIWorkFlowSteps {
                         "  \"emp_status\": \"confirmed\",\n" +
                         "  \"emp_job_title\": \"qa\"\n" +
                         "}");
+
+        */
+        request = given().header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                header(APIConstants.Header_Authorization_key, token)
+                .body(APIPayloadConstants.createEmployeePayload());
     }
 
     @When("a POST call is made to create an employee")
     public void a_post_call_is_made_to_create_an_employee() {
-        response =  request.when().post("/createEmployee.php");
+        response =  request.when().post(APIConstants.CREATE_EMPLOYEE_URI);
         //to print the response in console
         response.prettyPrint();
     }
@@ -82,14 +98,14 @@ public class APIWorkFlowSteps {
     @Given("a request is prepared to get the created employee")
     public void a_request_is_prepared_to_get_the_created_employee() {
         request = given().
-                header("Content-Type","application/json").
-                header("Authorization", token).
+                header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                header(APIConstants.Header_Authorization_key, token).
                 queryParam("employee_id", employee_id);
     }
 
     @When("a GET call is made to get the employee")
     public void a_get_call_is_made_to_get_the_employee() {
-        response = request.when().get("/getOneEmployee.php");
+        response = request.when().get(APIConstants.GET_ONE_EMPLOYEE_URI);
         response.prettyPrint();
     }
 
@@ -127,7 +143,30 @@ public class APIWorkFlowSteps {
                 Assert.assertEquals(actualValue, expectedValue);
             }
         }
+    }
 
+    @Given("a request is prepared for creating an employee via json payload")
+    public void a_request_is_prepared_for_creating_an_employee_via_json_payload() {
+        request = given().header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                header(APIConstants.Header_Authorization_key, token)
+                .body(APIPayloadConstants.createEmployeeJsonPayload());
+    }
+
+    @Then("the response body contains {string} key and value {string}")
+    public void the_response_body_contains_key_and_value(String key, String value) {
+        response.then().assertThat().body(key,equalTo(value));
+    }
+
+    @Given("a request is prepared for creating an employee with dynamic data {string} , {string} , {string} , {string} , {string} , {string} , {string}")
+    public void a_request_is_prepared_for_creating_an_employee_with_dynamic_data
+            (String firstName, String lastName, String middleName,
+             String gender, String birthday,
+             String status, String jobtitle) {
+        request = given().header(APIConstants.Header_Content_Type_Key,APIConstants.Content_type_Value).
+                header(APIConstants.Header_Authorization_key, token)
+                .body(APIPayloadConstants.payloadDynamic
+                        (firstName,lastName,middleName
+                                ,gender,birthday,status,jobtitle));
     }
 
 }
