@@ -57,4 +57,18 @@ public class APIPayloadConstants {
         return obj.toString();
     }
 
+    public static String updateEmployeePayload(){
+        JSONObject obj = new JSONObject();
+        //   obj.put("employee_id", APIWorkflowSteps.employee_id);
+        obj.put("employee_id", "98335A");
+        obj.put("emp_firstname","pak");
+        obj.put("emp_lastname","hind");
+        obj.put("emp_middle_name","sm");
+        obj.put("emp_gender","F");
+        obj.put("emp_birthday","2003-11-25");
+        obj.put("emp_status","notconfirmed");
+        obj.put("emp_job_title","sqa");
+        return obj.toString();
+    }
+
 }
